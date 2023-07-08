@@ -1,0 +1,49 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: joshix-poi-map-app-dev
+  annotations:
+    argocd/app-name: joshix-poi-map-app-dev
+    backstage.io/kubernetes-id: joshix-poi-map-app-dev
+    backstage.io/kubernetes-namespace: joshix
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=joshix-poi-map-app-dev'
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rosa916-rvhvd/joshix-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.rosa916.9nln.p1.openshiftapps.com/dev-pipelines/ns/joshix/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.rosa916.9nln.p1.openshiftapps.com/k8s/ns/joshix/deployments/joshix-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.rosa916.9nln.p1.openshiftapps.com/#https://github.com/rosa916-rvhvd/joshix-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://joshix-poi-map-app-joshix.apps.rosa916.9nln.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/joshix"
+  system: workshop-system-joshix
+  consumesApis:
+    - gateway-api-joshix
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-joshix
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/joshix"
